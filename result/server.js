@@ -11,7 +11,8 @@ var express = require('express'),
 
 io.set('transports', ['polling']);
 
-var port = 80;
+var port = process.env.PORT_ENV;
+var databaseConnection = `postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
 io.sockets.on('connection', function (socket) {
 
@@ -25,7 +26,7 @@ io.sockets.on('connection', function (socket) {
 async.retry(
   {times: 1000, interval: 1000},
   function(callback) {
-      pg.connect('postgres://postgres:password@db:5432/postgres', function(err, client, done) {
+      pg.connect(databaseConnection, function(err, client, done) {
           if (err) {
               console.error("Waiting for db");
           }

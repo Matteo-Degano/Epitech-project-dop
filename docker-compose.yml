@@ -4,6 +4,8 @@ services:
 
   poll:
     image: poll
+    environment:
+      HOST: redis
     build: ./poll
     ports:
       - "5000:80"
@@ -54,6 +56,13 @@ services:
 
   result: 
     image: result
+    environment:
+      PORT_ENV: 80
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: password
+      DB_NAME: postgres
     build: ./result
     ports:
       - "5001:80"
