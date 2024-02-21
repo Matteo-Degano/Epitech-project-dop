@@ -5,6 +5,7 @@ services:
   poll:
     image: poll
     environment:
+      PORT_ENV: 80
       HOST: redis
       OPTION_A: "Ansible"
       OPTION_B: "Chef"
