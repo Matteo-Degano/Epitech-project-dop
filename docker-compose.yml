@@ -6,6 +6,10 @@ services:
     image: poll
     environment:
       HOST: redis
+      OPTION_A: "Ansible"
+      OPTION_B: "Chef"
+      OPTION_C: "Puppet"
+      OPTION_D: "SaltStack"
     build: ./poll
     ports:
       - "5000:80"
