@@ -17,6 +17,8 @@ services:
     networks:
       - poll-tier
     restart: on-failure
+    depends_on: 
+      - redis
 
   redis:
     image: redis:7.0-alpine
